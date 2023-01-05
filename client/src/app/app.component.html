@@ -1,9 +1,10 @@
-<router-outlet></router-outlet>
+<app-nav></app-nav>
 
-<h1>Welcome to {{title}}!</h1>
-
-<ul>
-    <li *ngFor="let user of users">
-        {{user.id}} - {{user.userName}}
-    </li>
-</ul>
+<div class="container-fluid" style="margin-top: 100px; margin-left: 20px;">
+    <h1>Welcome to {{title}}!</h1>
+    <ul>
+        <li *ngFor="let user of users">
+            {{user.id}} - {{user.userName}}
+        </li>
+    </ul>
+</div>
