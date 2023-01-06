@@ -37,7 +37,7 @@ export class NavComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe({
       next: () => this.router.navigateByUrl('/members'), // () empty brackets are now same as _   we can use both
-      error: (error) => this.toastr.error(error.error),
+      //error: (error) => this.toastr.error(error.error), // because it is handled now in interceptor
     });
   }
 
