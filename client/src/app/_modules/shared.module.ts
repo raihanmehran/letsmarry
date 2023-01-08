@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,9 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
       positionClass: 'toast-bottom-right',
     }),
     NgxGalleryModule,
+    NgxSpinnerModule.forRoot({
+      type: 'line-scale-pulse-out-rapid',
+    }),
   ],
   exports: [
     BsDropdownModule,
@@ -24,6 +28,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
+    NgxSpinnerModule,
   ],
 })
 export class SharedModule {}
