@@ -24,8 +24,8 @@
                     <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
                 </li>
             </ul>
-
             <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+                <img src="{{user.photoUrl}}" alt="user photo" class="rounded-circle">
                 <a class="dropdown-toggle text-light" dropdownToggle>Welcome <span style="font-weight: bold;">{{user.username | titlecase}}</span></a>
                 <div class="dropdown-menu" *dropdownMenu>
                     <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
