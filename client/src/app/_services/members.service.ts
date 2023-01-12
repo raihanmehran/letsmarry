@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, of } from 'rxjs';
+import { map, of, take } from 'rxjs';
 import { environment } from 'src/env/environment';
 import { Member } from '../_models/member';
 import { PaginationResult } from '../_models/Pagination';
+import { User } from '../_models/user';
 import { UserParams } from '../_models/userParams';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +15,40 @@ export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
   memberCache = new Map();
-  paginatedResult: PaginationResult<Member[]> = new PaginationResult<
-    Member[]
-  >();
+  user: User | undefined;
+  userParams: UserParams | undefined;
 
-  constructor(private http: HttpClient) {}
+  // paginatedResult: PaginationResult<Member[]> = new PaginationResult<
+  //   Member[]
+  // >();
+
+  constructor(
+    private http: HttpClient,
+    private accountService: AccountService
+  ) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe({
+      next: (user) => {
+        if (user) {
+          this.userParams = new UserParams(user);
+          this.user = user;
+        }
+      },
+    });
+  }
+
+  getUserParams() {
+    return this.userParams;
+  }
+  setUserParams(params: UserParams) {
+    this.userParams = params;
+  }
+  resetUserParams() {
+    if (this.user) {
+      this.userParams = new UserParams(this.user);
+      return this.userParams;
+    }
+    return;
+  }
 
   getMembers(userParams: UserParams) {
     const response = this.memberCache.get(Object.values(userParams).join('-'));
@@ -72,7 +103,7 @@ export class MembersService {
 
   getMember(username: string) {
     const member = [...this.memberCache.values()]
-      .reduce((arr, elem) => arr.concate(elem.result), [])
+      .reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: Member) => member.userName === username);
 
     if (member) return of(member);
