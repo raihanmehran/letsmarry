@@ -12,6 +12,7 @@ import { UserParams } from '../_models/userParams';
 export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
+  memberCache = new Map();
   paginatedResult: PaginationResult<Member[]> = new PaginationResult<
     Member[]
   >();
@@ -19,6 +20,10 @@ export class MembersService {
   constructor(private http: HttpClient) {}
 
   getMembers(userParams: UserParams) {
+    const response = this.memberCache.get(Object.values(userParams).join('-'));
+
+    if (response) return of(response);
+
     let params = this.getPaginationHeaders(
       userParams.pageNumber,
       userParams.pageSize
@@ -29,7 +34,15 @@ export class MembersService {
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
 
-    return this.getPaginationResult<Member[]>(this.baseUrl + 'users', params);
+    return this.getPaginationResult<Member[]>(
+      this.baseUrl + 'users',
+      params
+    ).pipe(
+      map((response) => {
+        this.memberCache.set(Object.values(userParams).join('-'), response);
+        return response;
+      })
+    );
   }
 
   private getPaginationResult<T>(url: string, params: HttpParams) {
@@ -58,8 +71,12 @@ export class MembersService {
   }
 
   getMember(username: string) {
-    const member = this.members.find((u) => u.userName == username);
+    const member = [...this.memberCache.values()]
+      .reduce((arr, elem) => arr.concate(elem.result), [])
+      .find((member: Member) => member.userName === username);
+
     if (member) return of(member);
+
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 
