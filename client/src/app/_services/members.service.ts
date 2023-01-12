@@ -4,6 +4,7 @@ import { map, of } from 'rxjs';
 import { environment } from 'src/env/environment';
 import { Member } from '../_models/member';
 import { PaginationResult } from '../_models/Pagination';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root',
@@ -17,28 +18,42 @@ export class MembersService {
 
   constructor(private http: HttpClient) {}
 
-  getMembers(page?: number, itemsPerPage?: number) {
-    let params = new HttpParams();
-    if (page && itemsPerPage) {
-      params = params.append('pageNumber', page);
-      params = params.append('pageSize', itemsPerPage);
-    }
-    // if (this.members.length > 0) return of(this.members);
-    return this.http
-      .get<Member[]>(this.baseUrl + 'users', { observe: 'response', params })
-      .pipe(
-        map((response) => {
-          if (response.body) {
-            this.paginatedResult.result = response.body;
-          }
+  getMembers(userParams: UserParams) {
+    let params = this.getPaginationHeaders(
+      userParams.pageNumber,
+      userParams.pageSize
+    );
 
-          const pagination = response.headers.get('Pagination');
-          if (pagination) {
-            this.paginatedResult.pagination = JSON.parse(pagination);
-          }
-          return this.paginatedResult;
-        })
-      );
+    params = params.append('minAge', userParams.minAge);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
+
+    return this.getPaginationResult<Member[]>(this.baseUrl + 'users', params);
+  }
+
+  private getPaginationResult<T>(url: string, params: HttpParams) {
+    const paginatedResult: PaginationResult<T> = new PaginationResult<T>();
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          paginatedResult.result = response.body;
+        }
+
+        const pagination = response.headers.get('Pagination');
+        if (pagination) {
+          paginatedResult.pagination = JSON.parse(pagination);
+        }
+        return paginatedResult;
+      })
+    );
+  }
+
+  private getPaginationHeaders(pageNumber: number, pageSize: number) {
+    let params = new HttpParams();
+    params = params.append('pageNumber', pageNumber);
+    params = params.append('pageSize', pageSize);
+
+    return params;
   }
 
   getMember(username: string) {
