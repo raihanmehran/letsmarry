@@ -12,7 +12,6 @@ namespace API.Data
         public DataContext(DbContextOptions options)
             : base(options)
         {
-
         }
         public DbSet<AppUser> Users { get; set; }
         public DbSet<UserLike> Likes { get; set; }
@@ -32,9 +31,10 @@ namespace API.Data
 
             builder.Entity<UserLike>()
                 .HasOne(s => s.TargetUser)
-                .WithMany(l => l.LikedUsers)
+                .WithMany(l => l.LikedByUsers)
                 .HasForeignKey(s => s.TargetUserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

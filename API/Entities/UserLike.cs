@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
+
 namespace API.Entities
 {
-    public class UserLike
+    public class UserLike : IdentityUser
     {
         public AppUser SourceUser { get; set; }
         public int SourceUserId { get; set; }
