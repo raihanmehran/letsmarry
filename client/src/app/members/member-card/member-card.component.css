@@ -6,7 +6,7 @@
 }
 
 .card img {
-    transform: scale(1, 1);
+    transform: scale(1.0, 1.0);
     transition-duration: 500ms;
     transition-timing-function: ease-out;
 }
@@ -32,5 +32,5 @@
 }
 
 .animate {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }

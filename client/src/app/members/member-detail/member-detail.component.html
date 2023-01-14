@@ -1,7 +1,8 @@
 <div class="row" *ngIf="member">
     <div class="col-4">
         <div class="card">
-            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top img-thumbnail ">
+            <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
             <div class="card-body">
                 <div>
                     <strong>Location:</strong>
@@ -12,29 +13,30 @@
                     <p>{{member.age}}</p>
                 </div>
                 <div>
-                    <strong>Last Active:</strong>
-                    <!-- <p>{{member.lastActive | date}}</p> -->
-                    <p>{{member.lastActive+'Z' | timeago}}</p>
+                    <strong>Last active:</strong>
+                    <p>{{member.lastActive + 'Z' | timeago}}</p>
                 </div>
                 <div>
                     <strong>Member since:</strong>
-                    <p>{{member.created | date: 'dd MMMM YYYY'}}</p>
+                    <p>{{member.created | date: 'dd MMM yyyy'}}</p>
                 </div>
             </div>
             <div class="card-footer">
                 <div class="btn-group d-flex">
                     <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message</button>
+                    <button class="btn btn-success">Messages</button>
                 </div>
             </div>
         </div>
+
     </div>
+
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading="About {{member.knownAs}}">
                 <h4>Description</h4>
                 <p>{{member.introduction}}</p>
-                <h4>Looking for:</h4>
+                <h4>Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
             <tab heading="Interests">
@@ -42,13 +44,9 @@
                 <p>{{member.interests}}</p>
             </tab>
             <tab heading="Photos">
-                <h4>Photos Gallery</h4>
-                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery">
-
-                </ngx-gallery>
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
             </tab>
             <tab heading="Messages">
-                <h4>Messenger</h4>
                 <p>Messages will go here</p>
             </tab>
         </tabset>

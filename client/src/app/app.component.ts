@@ -5,10 +5,10 @@ import { AccountService } from './_services/account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'letsmarry';
+  title = 'Dating app';
 
   constructor(private accountService: AccountService) {}
 
@@ -17,12 +17,11 @@ export class AppComponent implements OnInit {
   }
 
   setCurrentUser() {
-    // const user: User = JSON.parse(localStorage.getItem('user')!);
-    // Alternative way:
-
     const userString = localStorage.getItem('user');
     if (!userString) return;
     const user: User = JSON.parse(userString);
     this.accountService.setCurrentUser(user);
   }
+
+
 }

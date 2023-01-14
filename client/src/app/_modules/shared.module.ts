@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
@@ -18,23 +17,21 @@ import { TimeagoModule } from 'ngx-timeago';
     CommonModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-bottom-right'
     }),
     NgxGalleryModule,
     NgxSpinnerModule.forRoot({
-      type: 'line-scale-pulse-out-rapid',
+      type: 'line-scale-party'
     }),
     FileUploadModule,
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
-    TimeagoModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   exports: [
     BsDropdownModule,
-    BrowserAnimationsModule,
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
@@ -43,7 +40,7 @@ import { TimeagoModule } from 'ngx-timeago';
     BsDatepickerModule,
     PaginationModule,
     ButtonsModule,
-    TimeagoModule,
-  ],
+    TimeagoModule
+  ]
 })
-export class SharedModule {}
+export class SharedModule { }

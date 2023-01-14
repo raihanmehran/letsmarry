@@ -10,28 +10,23 @@ import { MembersService } from 'src/app/_services/members.service';
 @Component({
   selector: 'app-member-edit',
   templateUrl: './member-edit.component.html',
-  styleUrls: ['./member-edit.component.css'],
+  styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  @ViewChild('editForm') eidtForm: NgForm | undefined;
-  @HostListener('window:beforeunload', ['$event']) unloadNotification(
-    $event: any
-  ) {
-    if (this.eidtForm?.dirty) {
+  @ViewChild('editForm') editForm: NgForm | undefined;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any) {
+    if (this.editForm?.dirty) {
       $event.returnValue = true;
     }
   }
   member: Member | undefined;
   user: User | null = null;
 
-  constructor(
-    private accountService: AccountService,
-    private memberService: MembersService,
-    private toastr: ToastrService
-  ) {
+  constructor(private accountService: AccountService, private memberService: MembersService, 
+      private toastr: ToastrService) { 
     this.accountService.currentUser$.pipe(take(1)).subscribe({
-      next: (user) => (this.user = user),
-    });
+      next: user => this.user = user
+    })
   }
 
   ngOnInit(): void {
@@ -41,19 +36,16 @@ export class MemberEditComponent implements OnInit {
   loadMember() {
     if (!this.user) return;
     this.memberService.getMember(this.user.username).subscribe({
-      next: (member) => {
-        (this.member = member), console.log(this.member);
-      },
-    });
+      next: member => this.member = member
+    })
   }
 
   updateMember() {
-    this.memberService.updateMember(this.eidtForm?.value).subscribe({
-      next: (_) => {
+    this.memberService.updateMember(this.editForm?.value).subscribe({
+      next: _ => {
         this.toastr.success('Profile updated successfully');
-        this.eidtForm?.reset(this.member);
-      },
-      error: (error) => this.toastr.error(error.error.errors),
-    });
+        this.editForm?.reset(this.member);
+      }
+    })
   }
 }
