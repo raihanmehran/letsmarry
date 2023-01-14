@@ -12,17 +12,16 @@ namespace API.Data
     {
         private readonly DataContext _context;
         private readonly IMapper _mapper;
-
         public UserRepository(DataContext context, IMapper mapper)
         {
-            _context = context;
             _mapper = mapper;
+            _context = context;
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
-                .Where(u => u.UserName == username)
+                .Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
@@ -45,11 +44,11 @@ namespace API.Data
                 _ => query.OrderByDescending(u => u.LastActive)
             };
 
-            return await PagedList<MemberDto>
-            .CreateAsync(
-                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider),
-                userParams.PageNumber,
+            return await PagedList<MemberDto>.CreateAsync(
+                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider), 
+                userParams.PageNumber, 
                 userParams.PageSize);
+
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -61,7 +60,7 @@ namespace API.Data
         {
             return await _context.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(u => u.UserName == username);
+                .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()

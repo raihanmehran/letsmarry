@@ -11,14 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230107080329_ExtendedUserEntity")]
+    [Migration("20221109055217_ExtendedUserEntity")]
     partial class ExtendedUserEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-rc.2.22472.11");
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
@@ -53,6 +53,9 @@ namespace API.Data.Migrations
                     b.Property<DateTime>("LastActive")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("LookingFor")
+                        .HasColumnType("TEXT");
+
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("BLOB");
 
@@ -60,7 +63,6 @@ namespace API.Data.Migrations
                         .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

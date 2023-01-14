@@ -1,4 +1,5 @@
-[{
+[
+    {
         "UserName": "Lisa",
         "Gender": "female",
         "DateOfBirth": "1956-07-22",
@@ -10,10 +11,12 @@
         "Interests": "Sit sit incididunt proident velit.",
         "City": "Greenbush",
         "Country": "Martinique",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/women/54.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/women/54.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Karen",
@@ -27,10 +30,12 @@
         "Interests": "Dolor aliquip velit amet aliqua minim labore sit laboris non aliquip cillum.",
         "City": "Celeryville",
         "Country": "Grenada",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/women/50.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/women/50.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Margo",
@@ -44,10 +49,12 @@
         "Interests": "Commodo do eiusmod quis labore est non.",
         "City": "Rosewood",
         "Country": "Svalbard and Jan Mayen Islands",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/women/14.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/women/14.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Lois",
@@ -61,10 +68,12 @@
         "Interests": "Duis in est laboris anim pariatur incididunt mollit laboris ea velit aliquip cillum.",
         "City": "Orviston",
         "Country": "Zimbabwe",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/women/11.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/women/11.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Ruthie",
@@ -78,10 +87,12 @@
         "Interests": "Elit Lorem aliquip deserunt cupidatat ex aliquip ullamco.",
         "City": "Germanton",
         "Country": "Antigua and Barbuda",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/women/84.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/women/84.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Todd",
@@ -95,10 +106,12 @@
         "Interests": "Esse cillum deserunt fugiat deserunt irure ea esse deserunt quis exercitation velit do nisi reprehenderit.",
         "City": "Cliff",
         "Country": "British Indian Ocean Territory",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/men/90.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/90.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Porter",
@@ -112,10 +125,12 @@
         "Interests": "Aliquip proident pariatur excepteur incididunt irure et.",
         "City": "Welda",
         "Country": "Christmas Island",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/men/87.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/87.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Mayo",
@@ -129,10 +144,12 @@
         "Interests": "Duis consectetur proident labore velit minim irure proident incididunt officia duis.",
         "City": "Clarence",
         "Country": "Burkina Faso",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/men/57.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/57.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Skinner",
@@ -146,10 +163,12 @@
         "Interests": "Pariatur qui ut commodo laboris officia.",
         "City": "Herald",
         "Country": "Poland",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/men/11.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/11.jpg",
+                "IsMain": true
+            }
+        ]
     },
     {
         "UserName": "Davis",
@@ -163,9 +182,11 @@
         "Interests": "Labore consectetur labore ut nulla voluptate nulla quis labore tempor dolor laborum.",
         "City": "Lupton",
         "Country": "Luxembourg",
-        "Photos": [{
-            "Url": "https://randomuser.me/api/portraits/men/93.jpg",
-            "IsMain": true
-        }]
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/93.jpg",
+                "IsMain": true
+            }
+        ]
     }
 ]

@@ -20,6 +20,7 @@ namespace API.Services
 
             _cloudinary = new Cloudinary(acc);
         }
+
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
@@ -29,11 +30,10 @@ namespace API.Services
                 using var stream = file.OpenReadStream();
                 var uploadParams = new ImageUploadParams
                 {
-                    File = new FileDescription(file.FileName, stream),
+                    File  = new FileDescription(file.FileName, stream),
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
                     Folder = "da-net7"
                 };
-
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
 

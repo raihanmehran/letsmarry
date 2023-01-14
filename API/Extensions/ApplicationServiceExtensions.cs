@@ -1,5 +1,4 @@
 using API.Data;
-using API.DTOs;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
@@ -9,15 +8,13 @@ namespace API.Extensions
 {
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApplicationServices(
-            this IServiceCollection services,
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services,
             IConfiguration config)
         {
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<DataContext>(opt =>
             {
-                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
-
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();

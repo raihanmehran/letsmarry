@@ -15,7 +15,7 @@ namespace API.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-rc.2.22472.11");
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
@@ -60,7 +60,6 @@ namespace API.Data.Migrations
                         .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -127,7 +126,7 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.AppUser", "TargetUser")
+                    b.HasOne("API.Entities.AppUser", "TargerUser")
                         .WithMany("LikedByUsers")
                         .HasForeignKey("TargetUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -135,7 +134,7 @@ namespace API.Data.Migrations
 
                     b.Navigation("SourceUser");
 
-                    b.Navigation("TargetUser");
+                    b.Navigation("TargerUser");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
