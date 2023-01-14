@@ -1,28 +1,29 @@
-<div class="card mb-4" *ngIf="member">
-    <div class="card-img-wrapper">
-        <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}" class="card-img-top">
-        <ul class="list-inline member-icons animate text-center">
-            <li class="list-inline-item">
-                <button routerLink="/members/{{member.userName}}" class="btn btn-primary">
-                    <i class="fa fa-user"></i>
-                </button>
-            </li>
-            <li class="list-inline-item">
-                <button class="btn btn-primary">
-                    <i class="fa fa-heart"></i>
-                </button>
-            </li>
-            <li class="list-inline-item">
-                <button class="btn btn-primary">
-                    <i class="fa fa-envelope"></i>
-                </button>
-            </li>
-        </ul>
+<div class="text-center mt-3">
+    <h2>{{predicate === 'liked'? 'Members I like':'Members who like me'}}</h2>
+</div>
+
+<div class="container mt-3">
+    <div class="d-flex">
+        <div class="btn-group" name="predicate">
+            <button class="btn btn-primary" btnRadio="liked" [(ngModel)]="predicate" (click)="loadLikes()">Members you Like</button>
+            <button class="btn btn-primary" btnRadio="likedBy" [(ngModel)]="predicate" (click)="loadLikes()">Members like you</button>
+        </div>
     </div>
-    <div class="card-body p-1">
-        <h6 class="card-title text-center mb-1">
-            <i class="fa fa-user me-2"></i> <strong> {{member.knownAs}} </strong> {{member.age}}
-        </h6>
-        <p class="card-text text-muted text-center">{{member.city}}</p>
+
+    <div class="row mt-3">
+        <div class="col-2" *ngFor="let member of members">
+            <app-member-card [member]="member"></app-member-card>
+        </div>
     </div>
+
+</div>
+</li>
+</ul>
+</div>
+<div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">
+        <i class="fa fa-user me-2"></i> <strong> {{member.knownAs}} </strong> {{member.age}}
+    </h6>
+    <p class="card-text text-muted text-center">{{member.city}}</p>
+</div>
 </div>
