@@ -18,7 +18,7 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public UsersController(IUserRepository userRepository, IMapper mapper, 
+        public UsersController(IUserRepository userRepository, IMapper mapper,
             IPhotoService photoService)
         {
             _photoService = photoService;
@@ -26,8 +26,9 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
+        public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
         {
             var currentUser = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
             userParams.CurrentUsername = currentUser.UserName;
@@ -39,12 +40,13 @@ namespace API.Controllers
 
             var users = await _userRepository.GetMembersAsync(userParams);
 
-            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, 
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize,
                 users.TotalCount, users.TotalPages));
 
             return Ok(users);
         }
 
+        [Authorize(Roles = "Member")]
         [HttpGet("{username}")]
 
         public async Task<ActionResult<MemberDto>> GetUser(string username)
@@ -87,10 +89,10 @@ namespace API.Controllers
 
             user.Photos.Add(photo);
 
-            if (await _userRepository.SaveAllAsync()) 
+            if (await _userRepository.SaveAllAsync())
             {
-                return CreatedAtAction(nameof(GetUser), 
-                    new {username = user.UserName}, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtAction(nameof(GetUser),
+                    new { username = user.UserName }, _mapper.Map<PhotoDto>(photo));
             }
 
             return BadRequest("Problem adding photo");
