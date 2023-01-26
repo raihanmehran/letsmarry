@@ -475,3 +475,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+API/SignalR/MessageHub.cs
+API/letsmarry.db-shm
+API/letsmarry.db-wal
