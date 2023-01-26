@@ -17,7 +17,6 @@ namespace API.SignalR
             _mapper = mapper;
             _userRepository = userRepository;
             _messageRepository = messageRepository;
-
         }
 
         public override async Task OnConnectedAsync()
