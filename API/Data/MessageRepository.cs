@@ -103,7 +103,7 @@ namespace API.Data
                 {
                     message.DateRead = DateTime.UtcNow;
                 }
-                await _context.SaveChangesAsync();
+                // await _context.SaveChangesAsync(); // cause UnitOfWork's HasChanges method which is called in the MessageHub's OnConnectedAsyncMethod
             }
 
             return _mapper.Map<IEnumerable<MessageDto>>(messages);
@@ -114,9 +114,10 @@ namespace API.Data
             _context.Connections.Remove(connection);
         }
 
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _context.SaveChangesAsync() > 0;
-        }
+        //cause of UnitOfWork
+        // public async Task<bool> SaveAllAsync()
+        // {
+        //     return await _context.SaveChangesAsync() > 0;
+        // }
     }
 }
